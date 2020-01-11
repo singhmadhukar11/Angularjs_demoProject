@@ -1,5 +1,5 @@
 angular.module("myapp", [])
-    .controller("HelloController", function ($scope, $http) {
+    .controller("HelloController", function ($scope, $http, commonService) {
        
         // -----------------------------------------ANGULAR JS COAD---------------------------------------------------------
         
@@ -11,7 +11,8 @@ angular.module("myapp", [])
         //     'city': '',
         //     'zip': ''
         // }
-
+        
+        $scope.message = commonService.message;
         $scope.dataAvailable = $scope.dataStore;
         $scope.response = [];
 

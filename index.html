@@ -19,9 +19,11 @@
     <!-- ------------------------------------------LIBRARY END------------------------------------------------- -->
     <link rel="stylesheet" href="app/css/index.css">
     <script src="route.js"></script>
-    <script src="app/service/index.service.js"></script>
     <script src="app.js"></script>
-    <script src="app/component/index.component.js"></script>
+    <script src="app/service/common.service.js"></script>
+    <script src="app/component/header.component.js"></script>
+
+
 </head>
 
 <body ng-app="myapp">
@@ -33,15 +35,15 @@
 
             <div class="container" id="container">
                 <ui-view></ui-view>
-                <!-- <div>{{response}}</div> -->
-                <!-- <pre>{{response | json}}</pre> -->
+                {{message}}
                 <!-- -------------------------FORM-------------------------- -->
                 <div class="margin-top-20">
-                    <form name="myForm">
+                    <form name="submitForm">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Email</label>
-                                <input autocomplete="off" type="email" class="form-control" id="inputEmail4" ng-model="credentials.email" required>
+                                <input autocomplete="off" type="email" class="form-control" id="inputEmail4"
+                                    ng-model="credentials.email" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Password</label>
@@ -62,29 +64,17 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">City</label>
-                                <input autocomplete="off" type="text" class="form-control" id="inputCity" ng-model="credentials.city" required>
+                                <input autocomplete="off" type="text" class="form-control" id="inputCity"
+                                    ng-model="credentials.city" required>
                             </div>
-                            <!-- <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
-                    </select>
-                  </div> -->
                             <div class="form-group col-md-2">
                                 <label for="inputZip">Zip</label>
-                                <input autocomplete="off" type="text" class="form-control" id="inputZip" ng-model="credentials.zip" required>
+                                <input autocomplete="off" type="text" class="form-control" id="inputZip"
+                                    ng-model="credentials.zip" required>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="form-check">
-                                <input autocomplete="off" class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck" >
-                                    Check me out
-                                </label>
-                            </div>
-                        </div> -->
-                        <button type="submit" class="btn btn-primary" ng-click="signin(credentials)" ng-disabled="myForm.$invalid">Sign in</button>
+                        <button type="submit" class="btn btn-primary" ng-click="signin(credentials)"
+                            ng-disabled="submitForm.$invalid">Sign in</button>
                     </form>
                 </div>
                 <!-- -----------------------------FORM END------------------ -->

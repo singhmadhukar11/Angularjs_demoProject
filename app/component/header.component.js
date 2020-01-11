@@ -1,5 +1,5 @@
 angular.module('myapp').component('heroDetail', {
-  templateUrl: 'app/component/index.component.html',
+  templateUrl: 'app/component/header.component.html',
   bindings: {
     hero: '='
   }
