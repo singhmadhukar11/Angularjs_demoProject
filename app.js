@@ -1,27 +1,27 @@
 angular.module("myapp", [])
     .controller("HelloController", function ($scope, $http, commonService) {
-       
+
         // -----------------------------------------ANGULAR JS COAD---------------------------------------------------------
-        
-        // $scope.credentials = {
-        //     'email': '',
-        //     'password': '',
-        //     'address': '',
-        //     'address2': '',
-        //     'city': '',
-        //     'zip': ''
-        // }
-        
+
+        /* $scope.credentials = {
+            'email': '',
+            'password': '',
+            'address': '',
+            'address2': '',
+            'city': '',
+            'zip': ''
+        } */
+
         $scope.message = commonService.message;
         $scope.dataAvailable = $scope.dataStore;
         $scope.response = [];
 
-        // $scope.signin = () => (console.log($scope.credentials),
-        //     $scope.response.push($scope.credentials),
-        //     $scope.dataStore = $scope.response.push($scope.credentials),
-        //     $scope.credentials = "");
+        /* $scope.signin = () => (console.log($scope.credentials),
+            $scope.response.push($scope.credentials),
+            $scope.dataStore = $scope.response.push($scope.credentials),
+            $scope.credentials = ""); */
 
-        $scope.signin =  (credentials) => (
+        $scope.signin = (credentials) => {
             $scope.datateman = {
                 'email': credentials.email,
                 'password': credentials.password,
@@ -29,26 +29,27 @@ angular.module("myapp", [])
                 'address2': credentials.address2,
                 'city': credentials.city,
                 'zip': credentials.zip
-            },
-            $scope.credentials = "",
+            };
+            $scope.credentials = "";
             $http.post('https://jsonplaceholder.typicode.com/posts', $scope.datateman, {
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
                 }
-            }));
+            })
+        };
 
-        // vm.getDataFromService = function() {
-        //     $http({
-        //         method: 'GET',
-        //         url: 'https://jsonplaceholder.typicode.com/posts'
-        //     }).then(function successCallback(response) {
+        /* vm.getDataFromService = function() {
+            $http({
+                method: 'GET',
+                url: 'https://jsonplaceholder.typicode.com/posts'
+            }).then(function successCallback(response) {
 
-        //         var data = response.data;
-        //     }, function errorCallback(response) {
-        //         // called asynchronously if an error occurs
-        //         // or server returns response with an error status.
-        //     });
-        // }
+                var data = response.data;
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        } */
 
 
         // -----------------------------------------ANGULAR JS COAD END---------------------------------------------------------
