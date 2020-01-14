@@ -20,15 +20,17 @@
     <!-- ------------------------------------------LIBRARY END------------------------------------------------- -->
     <!-- ------------------------------------------APPLICATION FILES ADDED---------------------------------------->
     <link rel="stylesheet" href="app/css/common.css">
-    <script src="config.js"></script>
     <script src="app.js"></script>
+    <!-- <script src="config.js"></script> -->
     <script src="app/service/common.service.js"></script>
     <script src="app/component/header/header.component.js"></script>
+    <script src="app/controllers/signup.js"></script>
+    <script src="app/controllers/home.ctrl.js"></script>
     <!-- ------------------------------------------APPLICATION FILES---------------------------------------------->
 </head>
 
 <body ng-app="myapp">
-    <div ng-controller="HelloController">
+    <div>
         <div>
             <!-- NAVIGATION BAR START-->
             <hero-detail></hero-detail>
@@ -36,14 +38,16 @@
 
             <div class="container" id="container">
 
-                <!-- <button type="button" class="btn btn-primary" ng-click="signup()">
-                    Sign up</button> -->
+                
 
-                <div ui-view></div>
                 <!-- -------------------------FORM-------------------------- -->
                 <div class="margin-top-20">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6" ng-controller="HelloController">
+                            <button type="button" class="btn btn-primary" ng-click="signup()">
+                                Sign up</button>
+                                <ui-view></ui-view>
+
                             <form name="submitForm">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -81,14 +85,14 @@
                                 </div>
                                 <div class="row">
                                     <button type="submit" class="btn btn-primary" ng-click="addDataDetails(credentials)"
-                                    ng-disabled="submitForm.$invalid">Sign in</button>
-                                    
-                                    <button type="submit" class="btn btn-primary" ng-click="updateDataDetails(credentials)"
-                                    >Update</button>
+                                        ng-disabled="submitForm.$invalid">Sign in</button>
+                                    &nbsp
+                                    <button type="submit" class="btn btn-primary"
+                                        ng-click="updateDataDetails(credentials)">Update</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6" ng-controller="signupController">
                             <div>
                                 <div class="row">
                                     <div class="col-sm">

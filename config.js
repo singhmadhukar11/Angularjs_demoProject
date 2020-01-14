@@ -1,44 +1,28 @@
-app = angular.module('myApp', ['ui.router',]);
-
-app.config(function ($stateProvider, $urlRouterProvider) {
-
-  $urlRouterProvider.otherwise('/home');
-
-  $stateProvider
-
-    // HOME STATES AND NESTED VIEWS ========================================
-    .state('home', {
-      url: '/home',
-      templateUrl: 'partial-home.html'
-    })
-
-    // nested list with custom controller
-    .state('home.list', {
-      url: '/list',
-      templateUrl: 'partial-home-list.html',
-      controller: function ($scope) {
-        $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
-      }
-    })
-
-    // nested list with just some random string data
-    .state('home.paragraph', {
-      url: '/paragraph',
-      template: 'I could sure use a drink right now.'
-    })
-
-    // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-    .state('about', {
-      url: '/about',
-      views: {
-        '': { templateUrl: 'partial-about.html' },
-        'columnOne@about': { template: 'Look I am a column!' },
-        'columnTwo@about': {
-          templateUrl: 'table-data.html',
-          controller: 'scotchController'
-        }
-      }
-
-    });
-
-});
+var app = angular.module("myapp", ['ui.router', 'ngStorage']); 
+  
+// define route configurations inside app.config 
+// injecting dependencies 
+app.config(function($stateProvider, $locationProvider,  $urlRouterProvider) { 
+  
+    // creating routes or states 
+    $stateProvider 
+        // .state('Home', { 
+        //     url : '/home', 
+        //     template : "<h1>Home Page</h1>", 
+        //     controller : "HomeCtrl"
+        // }) 
+        .state('Login', { 
+            url : '/login', 
+            template : "<h1>Login Page</h1>", 
+            controller : "LoginCtrl"
+        }) 
+        .state('signup', { 
+            url : '/signup', 
+            template : "<h1>Signup Page</h1>", 
+            controller : "signupController"
+        }); 
+  
+    // Redirect to home page if url does not  
+    // matches any of the three mentioned above 
+    // $urlRouterProvider.otherwise("/home"); 
+}); 

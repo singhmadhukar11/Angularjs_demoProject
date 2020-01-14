@@ -4,6 +4,10 @@ app.factory("commonService", function ($http) {
     var service = {
         // message: "This is from factory"
     };
+
+    // var listData = "";
+
+
     return service;
 
 });
