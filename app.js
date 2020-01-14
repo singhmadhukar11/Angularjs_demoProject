@@ -81,18 +81,23 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
     //         console.log("Deleted Sucessfully" + data)
     // };
 
-    $scope.bindSelectedData = (data) => {
+    // $scope.bindSelectedData = (data) => {
+    //     $scope.credentials.email = data.email;
+    //     $scope.credentials.password = data.password;
+    //     $scope.credentials.address = data.address;
+    //     $scope.credentials.address2 = data.address2;
+    //     $scope.credentials.city = data.city;
+    //     $scope.credentials.zip = data.zip;
+    // };
+
+    $scope.$on('child', function (event, data) {
+        console.log(data); // 'Some data'
         $scope.credentials.email = data.email;
         $scope.credentials.password = data.password;
         $scope.credentials.address = data.address;
         $scope.credentials.address2 = data.address2;
         $scope.credentials.city = data.city;
         $scope.credentials.zip = data.zip;
-    };
-
-    $scope.$on('child', function (event, data) {
-        console.log(data); // 'Some data'
-        bindSelectedData(data);
         alert(data);
     });
 
