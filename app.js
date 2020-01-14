@@ -1,42 +1,113 @@
-angular.module("myapp", [])
-    .controller("HelloController", function ($scope, $http, commonService) {
+angular.module("myapp", ['ui.router', 'ngStorage'])
+    .controller("HelloController", ["$scope", "$http", "commonService", "$state", '$localStorage', function ($scope, $http, commonService, $state, $localStorage) {
 
         // -----------------------------------------ANGULAR JS COAD---------------------------------------------------------
 
-        /* $scope.credentials = {
-            'email': '',
-            'password': '',
-            'address': '',
-            'address2': '',
-            'city': '',
-            'zip': ''
-        } */
+        // $scope.credentials = {
+        //     'email': '',
+        //     'password': '',
+        //     'address': '',
+        //     'address2': '',
+        //     'city': '',
+        //     'zip': ''
+        // };
+
+        $scope.signup = function () {
+            $state.go('signup');
+            console.log('State');
+        };
 
         $scope.message = commonService.message;
         $scope.dataAvailable = $scope.dataStore;
-        $scope.response = [];
+        $scope.listData = [];
 
-        /* $scope.signin = () => (console.log($scope.credentials),
-            $scope.response.push($scope.credentials),
-            $scope.dataStore = $scope.response.push($scope.credentials),
-            $scope.credentials = ""); */
 
-        $scope.signin = (credentials) => {
-            $scope.datateman = {
-                'email': credentials.email,
-                'password': credentials.password,
-                'address': credentials.address,
-                'address2': credentials.address2,
-                'city': credentials.city,
-                'zip': credentials.zip
+        $scope.addDataDetails = (credentials) => {
+
+            let dataDetails = {
+                id: $scope.listData.length + 1,
+                email: credentials.email,
+                password: credentials.password,
+                address: credentials.address,
+                address2: credentials.address2,
+                city: credentials.city,
+                zip: credentials.zip
             };
-            $scope.credentials = "";
-            $http.post('https://jsonplaceholder.typicode.com/posts', $scope.datateman, {
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
-                }
-            })
+
+            $scope.listData.push(dataDetails);
+            clearField();
+
         };
+
+    $scope.updateDataDetails = (credentials) => {};
+
+        $scope.deleteRowData = (data) => {
+            $scope.index = $scope.listData.indexOf(data);
+            $scope.listData.splice($scope.index, 1);
+            console.log("Deleted Sucessfully" + data)
+    };
+
+        $scope.bindSelectedData = (data) => {
+            $scope.credentials.email = data.email,
+                $scope.credentials.password = data.password,
+                $scope.credentials.address = data.address,
+                $scope.credentials.address2 = data.address2,
+                $scope.credentials.city = data.city,
+                $scope.credentials.zip = data.zip
+        };
+
+        $scope.updateDataDetails = () => {
+
+        };
+
+        let clearField = () => {
+            $scope.credentials.email = '',
+                $scope.credentials.password = '',
+                $scope.credentials.address = '',
+                $scope.credentials.address2 = '',
+                $scope.credentials.city = '',
+                $scope.credentials.zip = ''
+        };
+
+        $localStorage.listData = $scope.listData;
+
+    
+
+        // if($scope.listData.length !==0){
+        //     $localStorage.listData = $scope.listData;
+        // }
+
+        // $scope.clearFields = () => {
+        //     'id' = 0
+
+        // };
+
+        // $scope.signin = () => {
+        // console.log($scope.credentials);
+        // $scope.response.push($scope.credentials);
+        // $scope.dataStore = $scope.response.push($scope.credentials);
+        // $scope.credentials = "";
+        // };
+
+
+        // $scope.signin = (credentials) => {
+        //     $scope.datateman = {
+        //         'email': credentials.email,
+        //         'password': credentials.password,
+        //         'address': credentials.address,
+        //         'address2': credentials.address2,
+        //         'city': credentials.city,
+        //         'zip': credentials.zip
+        //     };
+        //     $scope.dataStore = $scope.response.push($scope.datateman);
+        //     console.log($scope.dataStore);
+        //     $scope.credentials = "";
+        //     $http.post('https://jsonplaceholder.typicode.com/posts', $scope.datateman, {
+        //         headers: {
+        //             'Content-Type': 'application/json; charset=utf-8'
+        //         }
+        //     })
+        // };
 
         /* vm.getDataFromService = function() {
             $http({
@@ -100,4 +171,4 @@ angular.module("myapp", [])
         //     $("#div1").load("Test.txt");
         // });
 
-    });
+    }]);

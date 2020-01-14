@@ -16,10 +16,11 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <script src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
     <!-- ------------------------------------------LIBRARY END------------------------------------------------- -->
     <!-- ------------------------------------------APPLICATION FILES ADDED---------------------------------------->
     <link rel="stylesheet" href="app/css/common.css">
-    <script src="route.js"></script>
+    <script src="config.js"></script>
     <script src="app.js"></script>
     <script src="app/service/common.service.js"></script>
     <script src="app/component/header/header.component.js"></script>
@@ -34,48 +35,97 @@
             <!-- NAVIGATION BAR END -->
 
             <div class="container" id="container">
-                <ui-view></ui-view>
-                {{message}}
+
+                <!-- <button type="button" class="btn btn-primary" ng-click="signup()">
+                    Sign up</button> -->
+
+                <div ui-view></div>
                 <!-- -------------------------FORM-------------------------- -->
                 <div class="margin-top-20">
-                    <form name="submitForm">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input autocomplete="off" type="email" class="form-control" id="inputEmail4"
-                                    ng-model="credentials.email" required>
+                    <div class="row">
+                        <div class="col-6">
+                            <form name="submitForm">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Email</label>
+                                        <input autocomplete="off" type="email" class="form-control" id="inputEmail4"
+                                            ng-model="credentials.email" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Password</label>
+                                        <input autocomplete="off" type="password" class="form-control"
+                                            id="inputPassword4" ng-model="credentials.password" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input autocomplete="off" type="text" class="form-control" id="inputAddress"
+                                        ng-model="credentials.address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">Address 2</label>
+                                    <input autocomplete="off" type="text" class="form-control" id="inputAddress2"
+                                        ng-model="credentials.address2" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input autocomplete="off" type="text" class="form-control" id="inputCity"
+                                            ng-model="credentials.city" required>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputZip">Zip</label>
+                                        <input autocomplete="off" type="text" class="form-control" id="inputZip"
+                                            ng-model="credentials.zip" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary" ng-click="addDataDetails(credentials)"
+                                    ng-disabled="submitForm.$invalid">Sign in</button>
+                                    
+                                    <button type="submit" class="btn btn-primary" ng-click="updateDataDetails(credentials)"
+                                    >Update</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        ID
+                                    </div>
+                                    <div class="col-sm">
+                                        EMAIL
+                                    </div>
+                                    <div class="col-sm">
+                                        ADDRESS
+                                    </div>
+                                    <div class="col-sm">
+                                        <!-- <button type="button" ng-click="deleteRowData()" class="btn btn-link">DELETE</button> -->
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input autocomplete="off" type="password" class="form-control" id="inputPassword4"
-                                    ng-model="credentials.password" required>
+
+                            <div ng-click="bindSelectedData(data)" class="alert alert-warning"
+                                ng-repeat="data in listData">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        {{data.id}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{data.email}}
+                                    </div>
+                                    <div class="col-sm">
+                                        {{data.address}}
+                                    </div>
+                                    <div class="col-sm">
+                                        <button type="button" ng-click="deleteRowData(data)"
+                                            class="btn btn-link">DELETE</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <input autocomplete="off" type="text" class="form-control" id="inputAddress"
-                                ng-model="credentials.address" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input autocomplete="off" type="text" class="form-control" id="inputAddress2"
-                                ng-model="credentials.address2" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input autocomplete="off" type="text" class="form-control" id="inputCity"
-                                    ng-model="credentials.city" required>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input autocomplete="off" type="text" class="form-control" id="inputZip"
-                                    ng-model="credentials.zip" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" ng-click="signin(credentials)"
-                            ng-disabled="submitForm.$invalid">Sign in</button>
-                    </form>
+                    </div>
                 </div>
                 <!-- -----------------------------FORM END------------------ -->
                 <!-- <div>
