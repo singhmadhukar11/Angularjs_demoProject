@@ -3,6 +3,8 @@ angular.module("myapp")
 
         $scope.listData = [];
 
+        $scope.getData = $scope.data;
+
         $scope.$on("saveData", function (evt, data) {
             console.log('Data Received');
             $scope.listData.push(data);

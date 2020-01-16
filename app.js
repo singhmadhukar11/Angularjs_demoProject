@@ -24,7 +24,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
 
     // Redirect to home page if url does not  
     // matches any of the three mentioned above 
-    $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("/home");
     // $locationProvider.html5Mode({
     //     enabled: true,
     //     requireBase: false
@@ -32,7 +32,7 @@ app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
     // $locationProvider.hashPrefix();
     // $state.reload(home)
 });
-app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonService", "$state", '$localStorage', function ($rootScope, $scope, $http, commonService, $state, $localStorage) {
+app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonService", "$state", function ($rootScope, $scope, $http, commonService, $state) {
 
     // -----------------------------------------ANGULAR JS COAD---------------------------------------------------------
 
@@ -45,9 +45,9 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
     //     'zip': ''
     // };
 
-
-    $scope.signup = function () {
-        $state.go('signup');
+    $rootScope.data = "Data Sent"
+    $scope.signup = function (data) {
+        $state.go('signup', $rootScope.data);
         console.log('State');
     };
 
