@@ -1,9 +1,9 @@
-var app = angular.module("myapp", ['ui.router', 'ngStorage']);
+var app = angular.module("myapp", ['ui.router']);
 
 // define route configurations inside app.config 
 // injecting dependencies 
-app.config(function ($stateProvider, $locationProvider, $urlRouterProvider, $locationProvider) {
-
+app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+    // $locationProvider.html5Mode(true);
     // creating routes or states 
     $stateProvider
         // .state('Home', { 
@@ -107,12 +107,6 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
 
     let clearField = () => {
         $scope.credentials = '';
-        // $scope.credentials.email = '',
-        // $scope.credentials.password = '',
-        // $scope.credentials.address = '',
-        // $scope.credentials.address2 = '',
-        // $scope.credentials.city = '',
-        // $scope.credentials.zip = ''
     };
 
 
@@ -157,18 +151,16 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
     //     })
     // };
 
-    /* vm.getDataFromService = function() {
-        $http({
-            method: 'GET',
-            url: 'https://jsonplaceholder.typicode.com/posts'
-        }).then(function successCallback(response) {
+    // vm.getDataFromService = function() {
+    //     commonService.requestHttp.then(function successCallback(response) {
 
-            var data = response.data;
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-    } */
+    //         var data = response.data;
+
+    //     }, function errorCallback(response) {
+    //         // called asynchronously if an error occurs
+    //         // or server returns response with an error status.
+    //     });
+    // } 
 
 
     // -----------------------------------------ANGULAR JS COAD END---------------------------------------------------------

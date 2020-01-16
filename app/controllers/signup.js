@@ -1,5 +1,5 @@
 angular.module("myapp")
-    .controller("signupController", function ($rootScope, $scope, $http, $rootScope) {
+    .controller("signupController", function ($scope, $http, $rootScope) {
 
         $scope.listData = [];
 
