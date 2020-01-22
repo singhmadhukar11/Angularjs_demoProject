@@ -1,5 +1,4 @@
 var app = angular.module("myapp", ['ui.router']);
-
 // define route configurations inside app.config 
 // injecting dependencies 
 app.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -57,7 +56,6 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
 
 
     $scope.addDataDetails = (credentials) => {
-
         let dataDetails = {
             id: $scope.listData.length + 1,
             email: credentials.email,
@@ -105,10 +103,14 @@ app.controller("HelloController", ["$rootScope", "$scope", "$http", "commonServi
 
     };
 
-    let clearField = () => {
-        $scope.credentials = '';
+   let clearField = () => {
+         $scope.credentials.email = '';
+         $scope.credentials.password = '';
+         $scope.credentials.address = '';
+         $scope.credentials.address2 = '';
+         $scope.credentials.city = '';
+         $scope.credentials.zip = '';
     };
-
 
 
     // $localStorage.listData = $scope.listData;

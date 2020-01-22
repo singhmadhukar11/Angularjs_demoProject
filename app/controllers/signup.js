@@ -1,8 +1,6 @@
 angular.module("myapp")
     .controller("signupController", function ($scope, $http, $rootScope) {
-
         $scope.listData = [];
-
         $scope.getData = $scope.data;
 
         $scope.$on("saveData", function (evt, data) {
@@ -19,5 +17,4 @@ angular.module("myapp")
         $scope.bindSelectedData = (data) => {
             $scope.$root.$broadcast('child', data); // going up!
         };
-
     });
